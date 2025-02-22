@@ -10,7 +10,21 @@ from typing import List
 router = APIRouter(prefix='/tasks')
 
 
-@router.get('get_tasks/', response_model=List[TaskResponseModel])
+@router.get('/get_task/{task_id}', response_model=TaskResponseModel)
+async def get_tasks(task_id: int, user: User = Depends(get_current_user)):
+
+    task = Task.select().where(Task.id == task_id).first()
+
+    if task is None:
+        raise HTTPException(status_code=404, detail='Task not found')
+
+    if task.id_user.id != user.id:
+        raise HTTPException(status_code=401, detail='No eres propietario')
+
+    return task
+
+
+@router.get('/get_tasks/', response_model=List[TaskResponseModel])
 async def get_tasks(user: User = Depends(get_current_user)):
 
     return [task for task in user.tasks]
@@ -57,4 +71,17 @@ async def update_task(task_id: int, task_request: TaskRequestPutModel, user: Use
     task.save()
     return task
 
+@router.delete('/delete_task/{task_id}', response_model=TaskResponseModel)
+async def delete_task(task_id: int, user: User = Depends(get_current_user)):
+
+    task = Task.select().where(Task.id == task_id).first()
+
+    if task is None:
+        raise HTTPException(status_code=404, detail='Task not found')
+
+    if task.id_user.id != user.id:
+        raise HTTPException(status_code=401, detail='No eres propietario')
+
+    task.delete_instance()
+    return task
 
