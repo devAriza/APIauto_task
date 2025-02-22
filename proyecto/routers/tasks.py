@@ -4,11 +4,16 @@ from starlette import status
 from ..database import User, Task
 from ..schemas import TaskRequestModel, TaskResponseModel, TaskRequestPutModel, TaskRequestDeleteModel
 from ..common import get_current_user, oauth2_schema
+from typing import List
 
 
 router = APIRouter(prefix='/tasks')
 
 
+@router.get('get_tasks/', response_model=List[TaskResponseModel])
+async def get_tasks(user: User = Depends(get_current_user)):
+
+    return [task for task in user.tasks]
 
 @router.post('/create_task', response_model=TaskResponseModel)
 async def create_task(user_tasks: TaskRequestModel, user: User = Depends(get_current_user)):
@@ -33,5 +38,23 @@ async def create_task(user_tasks: TaskRequestModel, user: User = Depends(get_cur
     )
     return user_tasks
 
+
+@router.put('/update_task/{task_id}', response_model=TaskResponseModel)
+async def update_task(task_id: int, task_request: TaskRequestPutModel, user: User = Depends(get_current_user)):
+
+    task = Task.select().where(Task.id == task_id).first()
+
+    if task is None:
+        raise HTTPException(status_code=404, detail='Task not found')
+
+    if task.id_user.id != user.id:
+        raise HTTPException(status_code=401, detail='No eres propietario')
+
+    task.title = task_request.title
+    task.description = task_request.description
+    task.completed = task_request.completed
+
+    task.save()
+    return task
 
 

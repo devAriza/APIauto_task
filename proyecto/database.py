@@ -46,7 +46,7 @@ class Task(Model):
     id_user = ForeignKeyField(User, backref='tasks', column_name="id_user")
 
     def __str__(self):
-        return f'Tarea: {self.title} - Usuario: {self.user.username}'
+        return f'Tarea: {self.title} - Usuario: {self.id_user}'
 
     class Meta:
         database = database
