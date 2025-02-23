@@ -2,6 +2,7 @@ from fastapi import FastAPI, APIRouter, Depends, HTTPException,status
 from .database import User, Task
 from .database import database as connection
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware
 from .common import create_access_token
 
 from .routers import user_router
@@ -12,6 +13,14 @@ app = FastAPI(title='CRUD Tasks',
               description='Assesment of CRUD Tasks',
               version='1'
               )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500"],  # Permite solicitudes desde tu frontend
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos los encabezados
+)
 
 api_v1 = APIRouter(prefix='/api')
 

@@ -36,7 +36,7 @@ async def login(credentials: HTTPBasicCredentials, response: Response):
     if user.password_hash != User.create_password(credentials.password):
         raise HTTPException(404, 'Password error')
 
-    response.set_cookie(key='id_user', value=user.id_user)
+    response.set_cookie(key='id_user', value=user.id)
 
     return user
 
