@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Table - Menu</title>
+    <meta name="description" content="Tasks">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>Autotraffic</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="/index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile.html"><i class="fas fa-user"></i><span>Perfil</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/table.html"><i class="fas fa-table"></i><span>Board</span></a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="/index.html"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Dashboard</a><a class="dropdown-item" href="/profile.html"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="/table.html"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>Board</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" id="aLogout" href="/login.html"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Board</h3>
+                    <div>
+                        <div class="card text-start shadow col-lg-auto col-md-auto col-sm-auto col-xl-auto col-auto">
+                            <div class="card-header py-3">
+                                <div class="justify-content-between headerCardBoard">
+                                    <p class="lead text-primary m-0 fw-bold" style="width: 352px;"><button class="btn btn-primary border rounded-circle" data-bs-toggle="tooltip" data-bss-tooltip="" id="btnAddTask" title="Agregar tarea" onclick="openModalCreate()"><i class="far fa-plus-square"></i></button>Tasks</p>
+                                    <div class="btn-group" role="group"><button class="btn btn-warning" id="btnEditarTask" type="button" onclick="openModalUpdate()">Editar tarea</button><button class="btn btn-danger" id="btnEliminarTask" type="button" onclick="openModalDelete()">Eliminar tarea</button></div>
+                                </div>
+                            </div>
+                            <div class="card-body ps-5 pe-4" id="cardBoard">
+                                <div class="d-flex justify-content-center row" id="divCardsTasks">
+                                    <div class="card tasksCards">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold">Pendientes</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-start row" id="tasksPendientes">
+                                                <div class="container">
+                                                    <div><a class="btn btn-primary btnCollapsePendientes" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1" role="button">Show Content</a>
+                                                        <div class="collapse" id="collapse-1">
+                                                            <p>Collapse content.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card tasksCards">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold">Finalizado</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-start row" id="tasksFinalizado">
+                                                <div>
+                                                    <div><a class="btn btn-primary btnCollapseFinalizado" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-5" href="#collapse-5" role="button">Show Content</a>
+                                                        <div class="collapse" id="collapse-5">
+                                                            <p>Collapse content.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalCreateTask">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Crear tarea</h4><button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="pModalCreateTask">* Datos obligatorios</p>
+                    <div id="divCreate" class="container-fluid ps-0 pe-0 w-100">
+                        <div class="text-start row">
+                            <div><label class="form-label">Título *</label><textarea id="btnCreateTitle" class="form-control taModalCreateTask"></textarea></div>
+                            <div class="divDescripcion"><label class="form-label">Descripción</label><textarea id="textCreateDescripcion" class="form-control textDescripcion taModalCreateTask"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal" type="button">Cerrar</button><button class="btn btn-primary" id="btnCreate" type="button">Guardar</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalUpdateTask">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar tarea</h4><button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid ps-0 pe-0 w-100 divUpdateTask">
+                        <div class="text-start row ms-0">
+                            <div class="row ms-0"><label class="form-label">Seleccionar tarea</label><select id="selectUpdateTask">
+                                    <optgroup label="This is a group">
+                                        <option value="12" selected="">This is item 1</option>
+                                        <option value="13">This is item 2</option>
+                                        <option value="14">This is item 3</option>
+                                    </optgroup>
+                                </select></div>
+                            <div><label class="form-label">Título</label><textarea class="form-control taModalCreateTask ms-0 ps-2"></textarea></div>
+                            <div class="divDescripcion"><label class="form-label">Descripción</label><textarea id="textUpdateDescripcion" class="form-control textDescripcion taModalCreateTask ps-2"></textarea></div>
+                            <div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="chkUpdateCompleted"><label class="form-check-label" for="formCheck-1">Finalizada</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal" type="button">Cerrar</button><button class="btn btn-primary" id="btnGuardarUpdate" type="button">Guardar</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalDeleteTask">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar tarea</h4><button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid ps-0 pe-0 w-100 divUpdateTask">
+                        <div class="row ms-0"><label class="form-label">Seleccionar tarea</label><select id="selectDeleteTask">
+                                <optgroup label="This is a group">
+                                    <option value="12" selected="">This is item 1</option>
+                                    <option value="13">This is item 2</option>
+                                    <option value="14">This is item 3</option>
+                                </optgroup>
+                            </select></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal" type="button">Cerrar</button><button class="btn btn-danger" id="btnDelete" type="button">Eliminar</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/table.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

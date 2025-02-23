@@ -1,0 +1,95 @@
+.headerCardBoard {
+  display: flex;
+}
+
+textarea {
+  resize: none;
+  height: 30px;
+  width: auto;
+}
+
+.textDescripcion {
+  height: 80px;
+  overflow: hidden;
+}
+
+.taModalCreateTask {
+  border-color: var(--bs-dark);
+}
+
+#divCreate {
+  display: flex;
+  justify-content: start;
+  align-content: center;
+}
+
+input {
+  margin-bottom: 18px;
+  border-style: none;
+}
+
+.divDescripcion {
+  height: 130px;
+}
+
+.pModalCreateTask {
+  color: var(--bs-danger);
+}
+
+#btnAddTask {
+  transform: translate(116px);
+}
+
+#cardBoard {
+  border-style: none;
+}
+
+#divCardsTasks {
+  transform: translate(-25px) rotate(0deg);
+}
+
+.tasksCards {
+  width: 463.328px;
+  padding: 0px;
+  margin: 14px;
+  margin-top: 0px;
+}
+
+.divUpdateTask {
+  display: flex;
+  justify-content: start;
+  align-content: center;
+}
+
+.divTasksPendientes {
+  width: 463.312px;
+}
+
+.divTasksPendientes {
+  width: 463.312px;
+}
+
+.btnCollapsePendientes {
+  max-width: 350px;
+  width: 75%;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.btnCollapseFinalizado {
+  max-width: 350px;
+  width: 75%;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.modal Label {
+  font-weight: bold;
+}
+
+/* Dashboard */
+
+.rowCountDashboard {
+  justify-content: center;
+}
+

@@ -6,19 +6,9 @@ Accept: application/json
 ###
 
 ###
-POST http://127.0.0.1:8000/auth/login
-Content-Type: application/json
-
+GET http://127.0.0.1:8000/
+Accept: application/json
 
 ###
-POST http://127.0.0.1:8000/api/tasks
-Content-Type: application/json
-Authorization: Bearer <TOKEN_AQUI>  # Reemplaza con un token válido si usas autenticación
 
-{
-  "title": "Aprender FastAPI",
-  "description": "Completar el curso de FastAPI",
-  "completed": false,
-  "id_user": 1
-}
 
