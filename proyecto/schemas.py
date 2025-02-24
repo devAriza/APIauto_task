@@ -71,6 +71,7 @@ class TaskRequestModel(BaseModel):
 
 
 class TaskResponseModel(ResponseModel):
+    id: int
     title: str
     description: Optional[str] = None
     completed: bool = False
