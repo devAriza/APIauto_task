@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, Depends, HTTPException,status
-
+from fastapi.middleware.cors import CORSMiddleware
 from .database import User, Task
 from .database import database as connection
 from fastapi.security import OAuth2PasswordRequestForm
@@ -16,7 +16,16 @@ app = FastAPI(title='CRUD Tasks',
               version='1'
               )
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"], 
+)
+
+# app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 api_v1 = APIRouter(prefix='/api')
 
@@ -28,7 +37,7 @@ async def startup_event():
     if connection.is_closed():
         connection.connect()
 
-    #  Crear de tablas. En caso de existir no pasa nada
+    #  Crear de tablas en caso de no existir
     connection.create_tables([User, Task])
 
 @api_v1.post('/auth')
@@ -39,7 +48,10 @@ async def auth(data: OAuth2PasswordRequestForm = Depends()):
     if user:
         return{
             'access_token': create_access_token(user),
-            'token_type': 'Bearer'
+            'token_type': 'Bearer',
+            'id_user': user.id,
+            'username': user.username,
+            'email': user.email
         }
     else:
         raise HTTPException(
@@ -59,4 +71,4 @@ def shutdown_event():
 
 @app.get("/")
 async def root():
-    return RedirectResponse(url='/static/login.html')
+    return RedirectResponse("http://127.0.0.1:5500/login.html")

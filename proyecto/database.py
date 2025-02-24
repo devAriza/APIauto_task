@@ -51,3 +51,4 @@ class Task(Model):
     class Meta:
         database = database
         table_name = 'tasks'
+

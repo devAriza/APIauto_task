@@ -2,9 +2,6 @@ from fastapi import HTTPException, APIRouter, Response, Cookie, Depends
 from fastapi.security import HTTPBasicCredentials
 from ..database import User
 from ..schemas import UserRequestModel, UserResponseModel
-from ..common import get_current_user
-from typing import List
-from datetime import datetime
 
 router = APIRouter(prefix='/users')
 
@@ -37,6 +34,8 @@ async def login(credentials: HTTPBasicCredentials, response: Response):
         raise HTTPException(404, 'Password error')
 
     response.set_cookie(key='id_user', value=user.id)
+    response.set_cookie(key='username', value=user.username)
+    response.set_cookie(key='email', value=user.email)
 
     return user
 
